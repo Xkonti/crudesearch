@@ -1,4 +1,4 @@
-namespace Web;
+namespace CrudeSearch.Api;
 
 public class WeatherForecast
 {

@@ -1,6 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{C54B8B6C-BCF3-41D9-B771-11C4974BC9D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudeSearch.Api", "CrudeSearch.Api\CrudeSearch.Api.csproj", "{C54B8B6C-BCF3-41D9-B771-11C4974BC9D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{25E7BAE6-577A-40A3-99D6-B07741230C98}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BCD17267-4E0C-4BE2-923C-768273B8CD11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +16,8 @@ Global
 		{C54B8B6C-BCF3-41D9-B771-11C4974BC9D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C54B8B6C-BCF3-41D9-B771-11C4974BC9D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C54B8B6C-BCF3-41D9-B771-11C4974BC9D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C54B8B6C-BCF3-41D9-B771-11C4974BC9D3} = {BCD17267-4E0C-4BE2-923C-768273B8CD11}
 	EndGlobalSection
 EndGlobal
