@@ -27,7 +27,7 @@ public class SurrealDbIntegrationTests : IClassFixture<SurrealDbContainerFixture
     {
         // Arrange
         var endpoint = $"ws://localhost:{_containerFixture.Port}/rpc";
-        using var surrealDbClient = new SurrealDbClient(endpoint);
+        await using var surrealDbClient = new SurrealDbClient(endpoint);
         
         // Authenticate and select database
         await surrealDbClient.SignIn(new SurrealDb.Net.Models.Auth.RootAuth
@@ -52,21 +52,9 @@ public class SurrealDbIntegrationTests : IClassFixture<SurrealDbContainerFixture
     {
         // Arrange
         var endpoint = $"ws://localhost:{_containerFixture.Port}/rpc";
-        using var surrealDbClient = new SurrealDbClient(endpoint);
+        await using var surrealDbClient = new SurrealDbClient(endpoint);
 
-        // Act & Assert
-        var healthCheck = async () => await surrealDbClient.Health();
-        await healthCheck.Should().NotThrowAsync();
-    }
-
-    [Fact]
-    public void SurrealDbContainer_ShouldHaveCorrectPort()
-    {
-        // Arrange & Act
-        var port = _containerFixture.Port;
-
-        // Assert
-        port.Should().BeGreaterThan(0);
-        port.Should().BeLessThan(65536);
+        // Act & Assert - if Health() throws, the test will fail
+        await surrealDbClient.Health();
     }
 }

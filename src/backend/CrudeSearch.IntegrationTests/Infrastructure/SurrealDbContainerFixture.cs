@@ -6,24 +6,23 @@ namespace CrudeSearch.IntegrationTests.Infrastructure;
 public class SurrealDbContainerFixture : IAsyncLifetime
 {
     private readonly IContainer _container;
-    private readonly int _hostPort;
 
     public SurrealDbContainerFixture()
     {
-        _hostPort = GetAvailablePort();
+        Port = GetAvailablePort();
         
         _container = new ContainerBuilder()
             .WithImage("surrealdb/surrealdb:v2.3.7")
             .WithCommand("start", "--log", "info", "--user", "root", "--pass", "root", "memory")
-            .WithPortBinding(_hostPort, 8000)
+            .WithPortBinding(Port, 8000)
             .WithWaitStrategy(Wait.ForUnixContainer()
                 .UntilMessageIsLogged("Started web server on"))
             .Build();
     }
 
-    public string ConnectionString => $"Endpoint=ws://localhost:{_hostPort}/rpc;NS=test;DB=test;User=root;Pass=root";
+    public string ConnectionString => $"Endpoint=ws://localhost:{Port}/rpc;NS=test;DB=test;User=root;Pass=root";
     
-    public int Port => _hostPort;
+    public int Port { get; }
 
     public async Task InitializeAsync()
     {
